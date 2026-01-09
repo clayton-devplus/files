@@ -1,0 +1,65 @@
+# Número de réplicas
+replicaCount: 1
+
+image:
+  repository: dbeaver/cloudbeaver
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8978
+
+# Configuração de Ingress
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostname: cloudbeaver.dev.devplusapp.com
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/hostname: cloudbeaver.dev.devplusapp.com
+    # Autenticação HTTP Basic
+    # nginx.ingress.kubernetes.io/auth-type: basic
+    # nginx.ingress.kubernetes.io/auth-secret: cloudbeaver-basic-auth
+    # nginx.ingress.kubernetes.io/auth-realm: "CloudBeaver Authentication Required"
+  tls: true
+# Volume persistente para armazenar workspace e drivers
+storage:
+  capacity: 10Gi # aumenta a capacidade em relação ao valor padrão de 5 GiB:contentReference[oaicite:5]{index=5}
+
+# Variáveis de ambiente adicionais
+# Essas variáveis são injetadas no container do CloudBeaver para ajustar o comportamento do servidor
+extraEnv:
+  # Permite que os usuários criem conexões personalizadas (necessário para conectar a bancos externos)
+  - name: CLOUDBEAVER_APP_SUPPORTS_CUSTOM_CONNECTIONS
+    value: "true"
+  # Desativa o acesso anônimo para aumentar a segurança:contentReference[oaicite:6]{index=6}
+  - name: CLOUDBEAVER_APP_ANONYMOUS_ACCESS_ENABLED
+    value: "false"
+  # Força uso de HTTPS — o nginx‑ingress faz o redirect se HTTP é usado:contentReference[oaicite:7]{index=7}
+  - name: CLOUDBEAVER_FORCE_HTTPS
+    value: "false"
+  # Lista de drivers permitidos (IDs de driver têm formato <provedor>.<driver>):contentReference[oaicite:8]{index=8};
+  # caso haja dificuldade em identificar os IDs corretos, deixe em branco (todos os drivers são permitidos por padrão)
+  - name: CLOUDBEAVER_APP_ENABLED_DRIVERS
+    value: "postgresql.postgres-jdbc,mysql.mysql-connector-java,mssql.sqlserver-driver"
+  # usuário e senha do administrador (secret Kubernetes será referenciado a seguir)
+  - name: CB_ADMIN_NAME
+    valueFrom:
+      secretKeyRef:
+        name: cloudbeaver-admin
+        key: username
+  - name: CB_ADMIN_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: cloudbeaver-admin
+        key: password
+
+# Configurações de recursos (ajuste conforme necessidade)
+resources:
+  requests:
+    cpu: "100m"
+    memory: "80Mi"
+  limits:
+    cpu: "500m"
+    memory: "300Mi"
