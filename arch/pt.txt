@@ -1,0 +1,37 @@
+Elaborar uma proposta de padronização de stacks utilizadas pelo time/área, com o objetivo de estabelecer direcionamentos tecnológicos iniciais que promovam maior consistência, governança, manutenção e escalabilidade das soluções.
+
+A proposta deve considerar as stacks atualmente utilizadas, identificar oportunidades de consolidação e definir recomendações iniciais para adoção.
+
+Objetivo:
+Definir uma proposta de referência para padronização de stacks, apoiando decisões técnicas mais consistentes e reduzindo a dispersão tecnológica entre times e projetos.
+
+Escopo esperado:
+
+Levantamento das stacks atualmente utilizadas
+
+Identificação de redundâncias e oportunidades de padronização
+
+Definição de critérios para adoção de stacks
+
+Proposta de stacks recomendadas por contexto de uso
+
+Registro de premissas, exceções e próximos passos para evolução da padronização
+
+Entregáveis esperados:
+
+Documento com a proposta de padronização de stacks
+
+Critérios que sustentem a recomendação
+
+Relação entre contexto de uso e stacks recomendadas
+
+Registro de exceções ou cenários que demandem avaliação específica
+
+Critérios de conclusão:
+
+Proposta documentada
+
+Critérios de decisão explícitos
+
+Recomendação inicial consolidada para apresentação e discussão com os envolvidos
+
