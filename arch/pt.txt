@@ -35,3 +35,28 @@ Critérios de decisão explícitos
 
 Recomendação inicial consolidada para apresentação e discussão com os envolvidos
 
+
+-------------------------
+
+ok Participação Liderancas Tech e Arqquitetos
+
+ok votação por deliberação 
+
+ok publicação geral de ADRs
+
+
+Nivelmanto de Connhecimento - falar
+
+
+ok -acionamento via Zendesk
+
+ok Ferramenta nova: vai começar pela arquitetura
+ok Todas demanda passam por arquitetura e faaemos avaliaçao
+
+Esse plano é de ação é para ter norte - falar
+
+Chamar de Regua minima - falar
+
+ok Fluxo de envolvimento - olha slides enviado de governaça (slide 5)
+
+ok pagina comnica mes 1
